@@ -8,10 +8,8 @@ use App\Models\LoaiSanPham;
 use App\Models\ThuongHieu;
 use App\Models\KhuyenMai;
 use App\Models\PhanQuyen;
-use App\Models\DonHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Pagination\Paginator;
 
 class ThayDoiTaiKhoanController extends Controller
 {
@@ -36,13 +34,6 @@ class ThayDoiTaiKhoanController extends Controller
         ;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $data = User::find($request->id);

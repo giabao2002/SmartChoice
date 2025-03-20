@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('app.app.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Smart Choice | Giới thiệu</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ URL('upload-img/logo.jpg') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- Tailwind CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-
-<body class="bg-gray-100">
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-6xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <!-- Breadcrumb -->
-            <div class="px-8 py-4 bg-gray-50 border-b">
+@section('content')
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex mb-8">
                 <nav class="flex" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-2">
                         <li>
-                            <a href="/trang-chu"
-                                class="text-gray-500 hover:text-blue-600 transition-colors duration-200">
+                            <a href="/trang-chu" class="text-gray-500 hover:text-blue-600 transition-colors duration-200">
                                 <i class="fas fa-home mr-1"></i>
                                 Trang chủ
                             </a>
@@ -36,14 +21,12 @@
             </div>
 
             <div class="flex flex-col md:flex-row">
-                <!-- Left column: Image -->
                 <div class="md:w-1/2 p-8 flex flex-col items-center justify-center">
                     <img src="{{ URL('upload-img/gioithieu.png') }}" class="max-w-full h-auto rounded-lg shadow-md"
                         alt="Giới thiệu">
                     <p class="mt-4 text-gray-600 text-center">Chúng tôi giúp bạn mua sắm sản phẩm mình yêu thích.</p>
                 </div>
 
-                <!-- Right column: Content -->
                 <div class="md:w-1/2 p-8">
                     <h2 class="text-3xl font-bold text-gray-900 mb-6">Smart Choice - WEBSITE BÁN GIÀY</h2>
 
@@ -65,6 +48,4 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+@endsection

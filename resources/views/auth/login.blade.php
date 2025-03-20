@@ -28,7 +28,7 @@
                     <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Đăng nhập</h2>
                     
                     <form class="space-y-6" method="POST" action="{{ route('app.dashboard') }}">
-                        <p class="text-gray-600">Hãy đăng nhập vào tài khoản của bạn:</p>
+                        <p class="text-gray-600">Hãy đăng nhập vào tài khoản của bạn</p>
                         @csrf
                         
                         @if (Session::get('thatbai'))

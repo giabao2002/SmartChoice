@@ -1,16 +1,7 @@
-<!-- Main Container -->
 <div class="container mx-auto px-4 py-8">
-    <!-- Carousel Section with Added Padding -->
-    {{-- <div class="mb-16">
-        @include('app.app.carousel')
-    </div> --}}
-
-    <!-- Favorite Brands Section -->
     <div class="bg-white rounded-lg shadow-lg p-6 mb-12" x-data="productTabs">
         <h3 class="text-2xl font-bold text-center text-gray-800 uppercase tracking-wider mb-6">Các Thương Hiệu Yêu Thích
         </h3>
-
-        <!-- Tabs Navigation -->
         <div class="flex justify-center space-x-4 mb-8">
             <button @click="activeTab = 'JBL'"
                 :class="{ 'border-b-2 border-blue-500 text-blue-600': activeTab === 'JBL', 'text-gray-500 hover:text-gray-700': activeTab !== 'JBL' }"
@@ -28,10 +19,7 @@
                 Marshall
             </button>
         </div>
-
-        <!-- Tabs Content -->
         <div>
-            <!-- JBL Products -->
             <div x-show="activeTab === 'JBL'" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-95"
                 x-transition:enter-end="opacity-100 transform scale-100">
@@ -45,7 +33,6 @@
                 @endphp
 
                 <div x-data="{ page: 0 }">
-                    <!-- Products -->
                     @foreach ($JBLProductsChunks as $index => $chunk)
                         <div x-show="page === {{ $index }}" x-transition:enter="transition ease-out duration-500"
                             x-transition:enter-start="opacity-0 transform translate-y-4"
@@ -107,7 +94,6 @@
                         </div>
                     @endforeach
 
-                    <!-- Pagination -->
                     @if ($totalPages > 1)
                         <div class="flex justify-center space-x-2 mt-8">
                             <button @click="page = Math.max(0, page-1)"
@@ -118,8 +104,11 @@
 
                             @for ($i = 0; $i < $totalPages; $i++)
                                 <button @click="page = {{ $i }}"
-                                    :class="{ 'bg-blue-600': page === {{ $i }}, 'bg-blue-400': page !==
-                                            {{ $i }} }"
+                                    :class="{
+                                        'bg-blue-600': page === {{ $i }},
+                                        'bg-blue-400': page !==
+                                            {{ $i }}
+                                    }"
                                     class="px-3 py-1 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                     {{ $i + 1 }}
                                 </button>
@@ -135,7 +124,6 @@
                 </div>
             </div>
 
-            <!-- B&O Products -->
             <div x-show="activeTab === 'B&O'" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-95"
                 x-transition:enter-end="opacity-100 transform scale-100">
@@ -149,7 +137,6 @@
                 @endphp
 
                 <div x-data="{ BOPage: 0 }">
-                    <!-- Products -->
                     @foreach ($BOProductsChunks as $index => $chunk)
                         <div x-show="BOPage === {{ $index }}"
                             x-transition:enter="transition ease-out duration-500"
@@ -212,7 +199,6 @@
                         </div>
                     @endforeach
 
-                    <!-- Pagination -->
                     @if ($totalBOPages > 1)
                         <div class="flex justify-center space-x-2 mt-8">
                             <button @click="BOPage = Math.max(0, BOPage-1)"
@@ -223,7 +209,8 @@
 
                             @for ($i = 0; $i < $totalBOPages; $i++)
                                 <button @click="BOPage = {{ $i }}"
-                                    :class="{ 'bg-blue-600': BOPage === {{ $i }}, 'bg-blue-400': BOPage !== {{ $i }} }"
+                                    :class="{ 'bg-blue-600': BOPage === {{ $i }}, 'bg-blue-400': BOPage !==
+                                            {{ $i }} }"
                                     class="px-3 py-1 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                     {{ $i + 1 }}
                                 </button>
@@ -239,7 +226,6 @@
                 </div>
             </div>
 
-            <!-- Marshall Products -->
             <div x-show="activeTab === 'Marshall'" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-95"
                 x-transition:enter-end="opacity-100 transform scale-100">
@@ -253,7 +239,6 @@
                 @endphp
 
                 <div x-data="{ MarshallPage: 0 }">
-                    <!-- Products -->
                     @foreach ($MarshallProductsChunks as $index => $chunk)
                         <div x-show="MarshallPage === {{ $index }}"
                             x-transition:enter="transition ease-out duration-500"
@@ -316,7 +301,6 @@
                         </div>
                     @endforeach
 
-                    <!-- Pagination -->
                     @if ($totalMarshallPages > 1)
                         <div class="flex justify-center space-x-2 mt-8">
                             <button @click="MarshallPage = Math.max(0, MarshallPage-1)"
@@ -327,8 +311,11 @@
 
                             @for ($i = 0; $i < $totalMarshallPages; $i++)
                                 <button @click="MarshallPage = {{ $i }}"
-                                    :class="{ 'bg-blue-600': MarshallPage ===
-                                        {{ $i }}, 'bg-blue-400': MarshallPage !== {{ $i }} }"
+                                    :class="{
+                                        'bg-blue-600': MarshallPage ===
+                                            {{ $i }},
+                                        'bg-blue-400': MarshallPage !== {{ $i }}
+                                    }"
                                     class="px-3 py-1 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                     {{ $i + 1 }}
                                 </button>
@@ -346,19 +333,16 @@
         </div>
     </div>
 
-    <!-- Featured Products Section -->
     <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
         <h3 class="text-2xl font-bold text-center text-gray-800 uppercase tracking-wider mb-8">Các Sản Phẩm Nổi Bật
         </h3>
 
-        <!-- Featured Products Pagination -->
         <div class="relative px-4" x-data="{ featuredPage: 0 }">
             @php
                 $featuredProductsChunks = collect($sanphamnoibats)->chunk(4);
                 $totalFeaturedPages = $featuredProductsChunks->count();
             @endphp
 
-            <!-- Product Pages -->
             <div class="overflow-hidden">
                 @foreach ($featuredProductsChunks as $index => $chunk)
                     <div x-show="featuredPage === {{ $index }}"
@@ -423,7 +407,6 @@
                 @endforeach
             </div>
 
-            <!-- Pagination Controls -->
             @if ($totalFeaturedPages > 1)
                 <div class="flex justify-center space-x-2 mt-8">
                     <button @click="featuredPage = Math.max(0, featuredPage-1)"
@@ -434,7 +417,8 @@
 
                     @for ($i = 0; $i < $totalFeaturedPages; $i++)
                         <button @click="featuredPage = {{ $i }}"
-                            :class="{ 'bg-blue-600': featuredPage === {{ $i }}, 'bg-blue-400': featuredPage !== {{ $i }} }"
+                            :class="{ 'bg-blue-600': featuredPage === {{ $i }}, 'bg-blue-400': featuredPage !==
+                                    {{ $i }} }"
                             class="px-3 py-1 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             {{ $i + 1 }}
                         </button>
@@ -451,7 +435,6 @@
     </div>
 </div>
 
-<!-- Alpine.js -->
 <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <script>
     document.addEventListener('alpine:init', () => {

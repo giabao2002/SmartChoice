@@ -15,7 +15,8 @@
                     <form action="/admin/loaisanpham/them" method="POST" class="space-y-6">
                         @csrf
                         <div>
-                            <label for="ten_loai_san_pham" class="block text-sm font-medium text-gray-700">Tên loại sản phẩm</label>
+                            <label for="ten_loai_san_pham" class="block text-sm font-medium text-gray-700">Tên loại sản
+                                phẩm</label>
                             <input type="text" name="ten_loai_san_pham" id="ten_loai_san_pham" required
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" />
                         </div>

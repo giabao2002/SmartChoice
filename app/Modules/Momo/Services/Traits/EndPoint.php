@@ -13,6 +13,6 @@ trait EndPoint
 
     protected function endPoint(bool $isConfirm = false): string
     {
-        return $this->domain().'/v2/gateway/api/'.($isConfirm ? 'query' : 'create');
+        return $this->domain() . '/v2/gateway/api/' . ($isConfirm ? 'query' : 'create');
     }
 }

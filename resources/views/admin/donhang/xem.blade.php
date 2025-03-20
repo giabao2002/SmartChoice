@@ -60,11 +60,12 @@
                                     <tr class="hover:bg-gray-50 transition-colors duration-200">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                @if(isset($item['hinh_anh_1']))
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full object-cover"
-                                                        src="{{ URL('product-img/' . $item['hinh_anh_1']) }}" alt="">
-                                                </div>
+                                                @if (isset($item['hinh_anh_1']))
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <img class="h-10 w-10 rounded-full object-cover"
+                                                            src="{{ URL('product-img/' . $item['hinh_anh_1']) }}"
+                                                            alt="">
+                                                    </div>
                                                 @endif
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-gray-900">
@@ -74,13 +75,13 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ number_format((float)$item['don_gia']) }}đ
+                                            {{ number_format((float) $item['don_gia']) }}đ
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $item['so_luong'] }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ number_format((float)$item['don_gia'] * (int)$item['so_luong']) }}đ
+                                            {{ number_format((float) $item['don_gia'] * (int) $item['so_luong']) }}đ
                                         </td>
                                     </tr>
                                 @endforeach

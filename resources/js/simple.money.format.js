@@ -1,9 +1,8 @@
 (function ($) {
   $.fn.simpleMoneyFormat = function () {
     this.each(function (index, el) {
-      var elType = null; // input or other
+      var elType = null;
       var value = null;
-      // get value
       if ($(el).is("input") || $(el).is("textarea")) {
         value = $(el).val().replace(/,/g, "");
         elType = "input";
@@ -11,12 +10,11 @@
         value = $(el).text().replace(/,/g, "");
         elType = "other";
       }
-      // if value changes
       $(el).on("paste keyup", function () {
         value = $(el).val().replace(/,/g, "");
-        formatElement(el, elType, value); // format element
+        formatElement(el, elType, value);
       });
-      formatElement(el, elType, value); // format element
+      formatElement(el, elType, value);
     });
     function formatElement(el, elType, value) {
       var result = "";

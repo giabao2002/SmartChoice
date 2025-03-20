@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
-use App\Models\User;
 use App\Models\SanPham;
 use App\Models\LoaiSanPham;
 use App\Models\ThuongHieu;
@@ -15,21 +11,6 @@ use App\Models\KhuyenMai;
 
 class SanPhamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $loaisanphams = LoaiSanPham::all();
@@ -43,12 +24,6 @@ class SanPhamController extends Controller
         ;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         try {
@@ -141,24 +116,12 @@ class SanPhamController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $data = SanPham::all();
         return View('admin.sanpham.sanpham', ['sanphams' => $data]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = SanPham::find($id);
@@ -173,13 +136,6 @@ class SanPhamController extends Controller
         ;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $sanpham = SanPham::find($request->id_san_pham);
@@ -224,13 +180,6 @@ class SanPhamController extends Controller
         return Redirect('/admin/sanpham');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = SanPham::find($id);

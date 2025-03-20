@@ -3,7 +3,6 @@
 @section('content')
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <!-- Breadcrumb -->
             <nav class="flex mb-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li>
@@ -26,7 +25,6 @@
                 </ol>
             </nav>
 
-            <!-- Order Details Card -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
                 <div class="border-b border-gray-200 p-4 flex justify-between items-center">
                     <h5 class="text-xl font-semibold text-gray-800">Chi tiết đơn hàng</h5>
@@ -36,7 +34,6 @@
                     </a>
                 </div>
 
-                <!-- Order Information -->
                 <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                         <h6 class="text-lg font-medium text-gray-700 mb-3">Thông tin đơn hàng</h6>
@@ -116,7 +113,6 @@
                     </div>
                 </div>
 
-                <!-- Order Items -->
                 <div class="px-6 pb-6">
                     <h6 class="text-lg font-medium text-gray-700 mb-4">Sản phẩm đã đặt</h6>
                     <div class="overflow-x-auto">
@@ -177,7 +173,6 @@
         </div>
     </div>
 
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>

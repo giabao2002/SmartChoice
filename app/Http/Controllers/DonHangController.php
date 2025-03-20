@@ -4,24 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Modules\Momo\Services\MomoService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\SanPham;
 use App\Models\LoaiSanPham;
 use App\Models\ThuongHieu;
 use App\Models\KhuyenMai;
-use App\Models\GioHang;
 use App\Models\PhanQuyen;
 use App\Models\DonHang;
 
 class DonHangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         if (session()->get('check') == 0) {
@@ -96,29 +88,12 @@ class DonHangController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function store(Request $request)
     {
         $giohangs = session()->get('gio_hang');
         $amount = 0;
         foreach ($giohangs as $giohang) {
             $amount += $giohang['so_luong'] * $giohang['don_gia'] - $giohang['so_luong'] * $giohang['don_gia'] * $giohang['khuyen_mai'] * 0.01;
-
         }
         $hinh_thuc_thanh_toan = $request->input('hinh_thuc_thanh_toan');
         $tong_tien = $request->input('tong_tien');
@@ -200,12 +175,6 @@ class DonHangController extends Controller
         return Redirect('/');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $data = User::where('id', session('DangNhap'))->first();
@@ -235,12 +204,6 @@ class DonHangController extends Controller
         ;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = DonHang::find($id);
@@ -249,13 +212,6 @@ class DonHangController extends Controller
         return Redirect('/admin/donhang');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $data = DonHang::find($id);
@@ -264,12 +220,6 @@ class DonHangController extends Controller
         return Redirect('/admin/donhang');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = DonHang::find($id);

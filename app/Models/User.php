@@ -21,11 +21,6 @@ class User extends Authenticatable
     protected $primaryKey = "id";
     public $timestamps = false;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'ten_nguoi_dung',
         'email',
@@ -34,10 +29,7 @@ class User extends Authenticatable
         'password',
         'id_phan_quyen',
     ];
-    
-    /**
-     * Get the permission associated with the user.
-     */
+
     public function phanquyen()
     {
         return $this->belongsTo(PhanQuyen::class, 'id_phan_quyen', 'id_phan_quyen');

@@ -9,10 +9,8 @@ use App\Models\ThuongHieu;
 use App\Models\KhuyenMai;
 use App\Models\PhanQuyen;
 use App\Models\DonHang;
-use App\Models\DanhGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
@@ -265,7 +263,7 @@ class MainController extends Controller
         return view('auth.register');
     }
 
-    // Register;
+    // HandleRegister
     public function storeReg(Request $request)
     {
         User::create([
@@ -280,7 +278,7 @@ class MainController extends Controller
         return redirect()->route('auth.login');
     }
 
-    // Login;
+    // HandleLogin
     public function loginCheck(Request $request)
     {
         $request->validate([
@@ -435,23 +433,12 @@ class MainController extends Controller
         return redirect('/');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $phanquyens = PhanQuyen::all();
         return View('admin.taikhoan.them', ['phanquyens' => $phanquyens]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $user = User::create([
@@ -465,24 +452,12 @@ class MainController extends Controller
         return Redirect('/admin/taikhoan/taikhoan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $data = User::with('phanquyen')->get();
         return View('admin.taikhoan.taikhoan', ['users' => $data]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = User::find($id);
@@ -490,13 +465,6 @@ class MainController extends Controller
         return View('admin.taikhoan.sua', ['data' => $data, 'phanquyens' => $phanquyens]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $data = User::find($request->id);
@@ -514,12 +482,6 @@ class MainController extends Controller
         return Redirect('/admin/taikhoan');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = User::find($id);

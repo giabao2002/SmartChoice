@@ -3,7 +3,6 @@
 @section('content')
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <!-- Breadcrumb -->
             <nav class="flex mb-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li>
@@ -19,11 +18,9 @@
                 </ol>
             </nav>
 
-            <!-- Order History Table -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
                 @isset($donhangs)
                     <div class="p-4">
-                        <!-- DataTable Controls -->
                         <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
                             <div class="flex items-center mb-3 sm:mb-0">
                                 <label class="mr-2 text-sm text-gray-600">Hiển thị</label>
@@ -120,7 +117,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <a href="/lich-su/{{ $donhang['id_don_hang'] }}"
                                                     class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors duration-200">
-                                                    <i class="fas fa-eye mr-1"></i> Xem chi tiết
+                                                    <i class="fas fa-eye mr-1"></i> Chi tiết
                                                 </a>
                                             </td>
                                         </tr>
@@ -129,7 +126,6 @@
                             </table>
                         </div>
 
-                        <!-- DataTable Pagination -->
                         <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
                             <div class="text-sm text-gray-700 mb-3 sm:mb-0">
                                 Hiển thị <span id="showing-start">1</span> đến <span id="showing-end">10</span> của <span
@@ -143,7 +139,6 @@
                                         <i class="fas fa-chevron-left"></i>
                                     </a>
                                     <div id="pagination-numbers" class="flex">
-                                        <!-- Pagination numbers will be inserted here by JavaScript -->
                                     </div>
                                     <a href="#" id="next-page"
                                         class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
@@ -155,7 +150,6 @@
                         </div>
                     </div>
                 @else
-                    <!-- Order Details Table -->
                     <div class="p-4">
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200">
@@ -201,7 +195,6 @@
         </div>
     </div>
 
-    <!-- DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>

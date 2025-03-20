@@ -20,7 +20,7 @@
                 <!-- Left column: Image -->
                 <div class="md:w-1/2 p-8 flex flex-col items-center justify-center">
                     <img src="{{ URL('upload-img/bg-auth.png') }}" class="max-w-full h-auto" alt="Register image">
-                    <p class="mt-4 text-gray-600 text-center">Tạo tài khoản và bắt đầu mua sắm sản phẩm mà mình mơ ước.</p>
+                    <p class="mt-4 text-gray-600 text-center">Tạo tài khoản và bắt đầu mua sắm sản phẩm yêu thích.</p>
                 </div>
                 
                 <!-- Right column: Registration Form -->

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Momo\Services\MomoService;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class MomoController extends Controller
 {
@@ -24,10 +21,9 @@ class MomoController extends Controller
         $amount = 0;
         foreach ($giohangs as $giohang) {
             $amount += $giohang['so_luong'] * $giohang['don_gia'] - $giohang['so_luong'] * $giohang['don_gia'] * $giohang['khuyen_mai'] * 0.01;
-
         }
 
-        $orderId = 'DH_'.time().'_'.session('DangNhap');
+        $orderId = 'DH_' . time() . '_' . session('DangNhap');
         $requestId = md5(time() . session('DangNhap'));
 
         $momoService = new MomoService(

@@ -19,11 +19,11 @@ class MomoService implements MomoInterface
     use PayloadBuilder;
     use QrCode;
 
-    protected int $amount;
-    protected string $orderId;
-    protected string $requestId;
-    protected string $extraData;
-    protected ?array $response;
+    protected $amount;
+    protected $orderId;
+    protected $requestId;
+    protected $extraData;
+    protected $response;
 
     public function __construct(int $amount, string $orderId, string $requestId, string $extraData = '')
     {

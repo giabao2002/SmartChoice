@@ -8,6 +8,6 @@ class MomoProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/configs/momo.php', 'momo');
+        $this->mergeConfigFrom(__DIR__ . '/configs/momo.php', 'momo');
     }
 }

@@ -9,14 +9,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ URL('upload-img/logo.jpg') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- Tailwind CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <!-- Breadcrumb -->
             <nav class="flex mb-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li>
@@ -45,30 +43,28 @@
             @endforeach
 
             <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Shipping Information -->
                 <div class="lg:w-1/2">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                         <form action="/thanh-toan/hoadon" method="POST">
                             @csrf
                             <div class="border-b border-gray-200 p-4">
-                                <h5 class="text-xl font-semibold text-gray-800">Thông tin nhận hàng</h5>
+                                <h5 class="text-xl font-semibold text-gray-800">Thông tin giao hàng</h5>
                             </div>
 
-                            @if(session('error'))
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative m-4" role="alert">
+                            @if (session('error'))
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative m-4"
+                                    role="alert">
                                     <span class="block sm:inline">{{ session('error') }}</span>
                                 </div>
                             @endif
 
                             <div class="p-6 space-y-6">
-                                <!-- Payment Method -->
                                 <div>
                                     <label for="hinh_thuc_thanh_toan" class="block text-sm font-medium text-gray-700">
                                         Hình thức thanh toán
                                     </label>
-                                    <select name="hinh_thuc_thanh_toan" 
-                                            id="hinh_thuc_thanh_toan" 
-                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    <select name="hinh_thuc_thanh_toan" id="hinh_thuc_thanh_toan"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         <option value="Sau khi nhận hàng">Thanh toán khi nhận hàng</option>
                                         <option value="Thanh toán qua MoMo">Thanh toán qua MoMo</option>
                                         <optgroup label="Ngân hàng">
@@ -96,61 +92,45 @@
                                     </select>
                                 </div>
 
-                                <!-- Receiver Name -->
                                 <div>
                                     <label for="ten_nguoi_nhan" class="block text-sm font-medium text-gray-700">
                                         Tên người nhận
                                     </label>
-                                    <input type="text" 
-                                           id="ten_nguoi_nhan"
-                                           name="ten_nguoi_nhan" 
-                                           value="{{ $data['ten_nguoi_dung'] }}" 
-                                           required 
-                                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                                    <input type="text" id="ten_nguoi_nhan" name="ten_nguoi_nhan"
+                                        value="{{ $data['ten_nguoi_dung'] }}" required
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                 </div>
 
-                                <!-- Phone Number -->
                                 <div>
                                     <label for="sdt" class="block text-sm font-medium text-gray-700">
                                         Số điện thoại
                                     </label>
-                                    <input type="text" 
-                                           id="sdt"
-                                           name="sdt" 
-                                           value="{{ $data['sdt'] }}" 
-                                           required 
-                                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                                    <input type="text" id="sdt" name="sdt" value="{{ $data['sdt'] }}"
+                                        required
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                 </div>
 
-                                <!-- Shipping Address -->
                                 <div>
                                     <label for="dia_chi_nhan" class="block text-sm font-medium text-gray-700">
                                         Địa chỉ nhận
                                     </label>
-                                    <input type="text" 
-                                           id="dia_chi_nhan"
-                                           name="dia_chi_nhan" 
-                                           required 
-                                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                                    <input type="text" id="dia_chi_nhan" name="dia_chi_nhan" required
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                 </div>
 
-                                <!-- Notes -->
                                 <div>
                                     <label for="ghi_chu" class="block text-sm font-medium text-gray-700">
                                         Ghi chú
                                     </label>
-                                    <textarea id="ghi_chu"
-                                              name="ghi_chu" 
-                                              rows="4"
-                                              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                                    <textarea id="ghi_chu" name="ghi_chu" rows="4"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                                 </div>
 
-                                <input type="hidden" name="tong_tien" value="{{ number_format($tongtien) }} VNĐ" />
+                                <input type="hidden" name="tong_tien" value="{{ number_format($tongtien) }}" />
                                 <input type="hidden" name="thanh_toans" value="{{ serialize($giohangs) }}" />
 
-                                <!-- Submit Button -->
-                                <button type="submit" 
-                                        class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                                <button type="submit"
+                                    class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg transition-colors duration-200 flex items-center justify-center">
                                     <i class="fas fa-credit-card mr-2"></i>
                                     Thanh Toán
                                 </button>
@@ -159,21 +139,22 @@
                     </div>
                 </div>
 
-                <!-- Order Summary -->
                 <div class="lg:w-1/2">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                         <div class="border-b border-gray-200 p-4">
-                            <h5 class="text-xl font-semibold text-gray-800">HÓA ĐƠN</h5>
+                            <h5 class="text-xl font-semibold text-gray-800">Thông tin hóa đơn</h5>
                         </div>
                         <div class="p-6">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead>
                                     <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Sản phẩm
                                         </th>
-                                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Tiền
+                                        <th
+                                            class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Đơn giá
                                         </th>
                                     </tr>
                                 </thead>
@@ -184,7 +165,7 @@
                                                 {{ $giohang['ten_san_pham'] }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">
-                                                {{ number_format($km = sprintf('%d', $giohang['so_luong'] * $giohang['don_gia'] - $giohang['so_luong'] * $giohang['don_gia'] * $giohang['khuyen_mai'] * 0.01)) }} VNĐ
+                                                {{ number_format($km = sprintf('%d', $giohang['so_luong'] * $giohang['don_gia'] - $giohang['so_luong'] * $giohang['don_gia'] * $giohang['khuyen_mai'] * 0.01)) }}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -193,33 +174,34 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             Phí vận chuyển
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-right">
-                                            0 VNĐ
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-right">
+                                            Miễn phí
                                         </td>
                                     </tr>
 
                                     <tr class="bg-green-50">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-700">
-                                            Tổng
+                                            Tổng giá
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-700 text-right">
-                                            {{ number_format($tongtien) }} VNĐ
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-700 text-right">
+                                            {{ number_format($tongtien) }}
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
 
-                            <!-- QR Code Section -->
                             <div class="cart-footer mt-6 flex flex-col items-center" style="display: none;">
-                                <div class="qr-code bg-white p-4 rounded-lg shadow-md w-64 h-64 mb-4" id="image-qr-code">
-                                    @if (! empty($qrCode))
-                                        <img src="data:image/svg+xml;base64,{{ $qrCode }}" 
-                                             alt="QR Code"
-                                             class="w-full h-full object-cover"/>
+                                <div class="qr-code bg-white p-4 rounded-lg shadow-md w-64 h-64 mb-4"
+                                    id="image-qr-code">
+                                    @if (!empty($qrCode))
+                                        <img src="data:image/svg+xml;base64,{{ $qrCode }}" alt="QR Code"
+                                            class="w-full h-full object-cover" />
                                     @endif
                                 </div>
-                                <button id="btn-generate-new-qr" 
-                                        class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-200">
+                                <button id="btn-generate-new-qr"
+                                    class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-200">
                                     Tạo mới
                                 </button>
                             </div>
@@ -261,7 +243,9 @@
                             alert('Có lỗi xảy ra, vui lòng thử lại sau');
                             return;
                         }
-                        $('#image-qr-code').html(`<img src="data:image/svg+xml;base64,${qrCode}" alt="QR Code" class="w-full h-full object-cover"/>`);
+                        $('#image-qr-code').html(
+                            `<img src="data:image/svg+xml;base64,${qrCode}" alt="QR Code" class="w-full h-full object-cover"/>`
+                            );
                     },
                     error: function(data) {
                         alert(data.error);
