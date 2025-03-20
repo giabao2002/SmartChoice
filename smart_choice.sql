@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 20, 2025 at 01:11 PM
+-- Generation Time: Mar 20, 2025 at 06:43 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.26
 
@@ -73,7 +73,7 @@ CREATE TABLE `don_hang` (
 --
 
 INSERT INTO `don_hang` (`id_don_hang`, `id_user`, `ten_nguoi_nhan`, `sdt`, `dia_chi_nhan`, `ghi_chu`, `tong_tien`, `hinh_thuc_thanh_toan`, `trang_thai`, `hoa_don`, `props`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Nguyễn Văn A', '0123456788', 'Hà Nội', '123', '1,020,000 VNĐ', 'Thanh toán qua MoMo', 'Đã hoàn thành', 'a:1:{i:1;a:5:{s:10:\"hinh_anh_1\";s:12:\"sanpham1.png\";s:12:\"ten_san_pham\";s:13:\"Adidas NMD R2\";s:7:\"don_gia\";s:7:\"1200000\";s:8:\"so_luong\";s:1:\"1\";s:10:\"khuyen_mai\";s:2:\"15\";}}', '{\"amount\": 1020000, \"orderId\": \"DH_1742445370_2\", \"requestId\": \"b0c59e61f03387dce916544d3b1c1ea9\"}', '2025-03-19 21:36:52', '2025-03-19 21:37:25'),
+(1, 2, 'Nguyễn Văn A', '0123456788', 'Hà Nội', 'Giao hàng cẩn thận', '1,020,000 VNĐ', 'Thanh toán qua MoMo', 'Đã hoàn thành', 'a:1:{i:1;a:5:{s:10:\"hinh_anh_1\";s:12:\"sanpham1.png\";s:12:\"ten_san_pham\";s:13:\"Adidas NMD R2\";s:7:\"don_gia\";s:7:\"1200000\";s:8:\"so_luong\";s:1:\"1\";s:10:\"khuyen_mai\";s:2:\"15\";}}', '{\"amount\": 1020000, \"orderId\": \"DH_1742445370_2\", \"requestId\": \"b0c59e61f03387dce916544d3b1c1ea9\"}', '2025-03-19 21:36:52', '2025-03-19 21:37:25'),
 (2, 2, 'Nguyễn Văn A', '0123456788', 'Thanh Xuân', NULL, '1,530,000 VNĐ', 'Sau khi nhận hàng', 'Đã hoàn thành', 'a:1:{i:4;a:5:{s:10:\"hinh_anh_1\";s:27:\"09092022024829_bdj-1000.png\";s:12:\"ten_san_pham\";s:32:\"BDJ 1000 Headphones DJ Behringer\";s:7:\"don_gia\";s:7:\"1800000\";s:8:\"so_luong\";s:1:\"1\";s:10:\"khuyen_mai\";s:2:\"15\";}}', '[]', '2025-03-20 04:51:57', '2025-03-20 04:54:01'),
 (3, 2, 'Nguyễn Văn A', '0123456788', 'Hà Nội', NULL, '380,000 VNĐ', 'Thanh toán qua MoMo', 'Đã hoàn thành', 'a:1:{i:16;a:5:{s:10:\"hinh_anh_1\";s:99:\"34400_dareu_eh469_pink_1d57e30add8f42eca3eaa006d32481e2_5fea9259b65343acadecc1b76079c8b4_grande.png\";s:12:\"ten_san_pham\";s:24:\"DareU EH469 7.1 RGB Pink\";s:7:\"don_gia\";s:6:\"380000\";s:8:\"so_luong\";s:1:\"1\";s:10:\"khuyen_mai\";s:1:\"0\";}}', '{\"amount\": 380000, \"orderId\": \"DH_1742475199_2\", \"requestId\": \"bbd0f09ce5c10998ae4fbc7d4a068f86\"}', '2025-03-20 05:53:45', '2025-03-20 05:55:19');
 
@@ -255,7 +255,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bJ7PfrsXQIidamyZwb592eTDfNyqr4v71mD52I6B', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiQUg2WVVnNzM2MEIyVkpJbERmd1JOVTVkN2JabmdvV0Q1U1RQdEVHZiI7czo4OiJnaW9faGFuZyI7YTowOnt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9naW9pLXRoaWV1Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1OiJjaGVjayI7czoxOiIyIjtzOjk6ImRhbmhfZ2lhcyI7YToyOntpOjQ7YTo1OntzOjEwOiJoaW5oX2FuaF8xIjtzOjI3OiIwOTA5MjAyMjAyNDgyOV9iZGotMTAwMC5wbmciO3M6MTI6InRlbl9zYW5fcGhhbSI7czozMjoiQkRKIDEwMDAgSGVhZHBob25lcyBESiBCZWhyaW5nZXIiO3M6NzoiZG9uX2dpYSI7czo3OiIxODAwMDAwIjtzOjg6InNvX2x1b25nIjtzOjE6IjEiO3M6MTA6ImtodXllbl9tYWkiO3M6MjoiMTUiO31pOjE2O2E6NTp7czoxMDoiaGluaF9hbmhfMSI7czo5OToiMzQ0MDBfZGFyZXVfZWg0NjlfcGlua18xZDU3ZTMwYWRkOGY0MmVjYTNlYWEwMDZkMzI0ODFlMl81ZmVhOTI1OWI2NTM0M2FjYWRlY2MxYjc2MDc5YzhiNF9ncmFuZGUucG5nIjtzOjEyOiJ0ZW5fc2FuX3BoYW0iO3M6MjQ6IkRhcmVVIEVINDY5IDcuMSBSR0IgUGluayI7czo3OiJkb25fZ2lhIjtzOjY6IjM4MDAwMCI7czo4OiJzb19sdW9uZyI7czoxOiIxIjtzOjEwOiJraHV5ZW5fbWFpIjtzOjE6IjAiO319czo4OiJEYW5nTmhhcCI7aToyO30=', 1742476233);
+('lxtfV9GCHAaFAqSoGmPUAMyIljb5y1FD8HzKYs3g', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiV2g3eE55UFB2MW5OdUpsRkN6S0FrM3I1NWpyMG40QUdNNzlsTUZNQSI7czo4OiJnaW9faGFuZyI7YTowOnt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9zYW5waGFtIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1OiJjaGVjayI7czoxOiIxIjtzOjg6IkRhbmdOaGFwIjtpOjE7fQ==', 1742496094);
 
 -- --------------------------------------------------------
 
@@ -304,7 +304,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `ten_nguoi_dung`, `email`, `sdt`, `ten_dang_nhap`, `password`, `id_phan_quyen`) VALUES
 (1, 'Admin', 'admin@gmail.com', '0123456789', 'admin', '$2y$10$uXdVA13qRBr8hpfIY09PI.C8Xi0voRmWHVpgZXCqqko.GoL.CCoV.', 1),
-(2, 'Nguyễn Văn A', 'user@gmail.com', '0123456788', 'user1', '$2y$10$8mLhYENaILpulYZZCiC4RusvqYixMMddWR9xVMpCthqml5UymCZsC', 2),
+(2, 'Nguyễn Văn A', 'user@gmail.com', '0123456788', 'user1', '$2y$10$K5nVCSnuJa6zVVvAnbzOMODv5eTaWKAUPyik09eBwEBc57vQj9Jvm', 2),
 (3, 'Nguyễn Văn B', 'user2@gmail.com', '0123456787', 'user2', '$2y$10$VhTPr09OB2diyrKzt.LKW..NJ4fAoSLm4rjFarGytqR6ceyKYuuee', 2);
 
 --
