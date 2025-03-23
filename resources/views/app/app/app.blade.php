@@ -44,20 +44,13 @@
                     <!-- Navigation Links -->
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <a href="/"
-                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Trang
-                            chủ</a>
+                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Trang chủ</a>
                         <a href="/cua-hang"
-                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Cửa
-                            hàng</a>
+                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Cửa hàng</a>
                         <a href="/gioi-thieu"
-                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Giới
-                            thiệu</a>
-                        <a href="/thanh-toan"
-                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Thanh
-                            toán</a>
+                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Giới thiệu</a>
                         <a href="/gio-hang"
-                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Giỏ
-                            hàng</a>
+                            class="inline-flex items-center px-1 pt-1 font-medium text-gray-500 hover:text-gray-900">Giỏ hàng</a>
                     </div>
                 </div>
 
