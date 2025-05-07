@@ -11,5 +11,8 @@ class KhuyenMai extends Model
     protected $table = "khuyen_mai";
     protected $primaryKey = "id_khuyen_mai";
     public $timestamps = false;
-    protected $fillable = ['ten_khuyen_mai', 'gia_tri_khuyen_mai'];
+    protected $fillable = [
+        'ten_khuyen_mai', 
+        'gia_tri_khuyen_mai'
+    ];
 }

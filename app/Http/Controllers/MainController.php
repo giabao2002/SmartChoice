@@ -224,16 +224,59 @@ class MainController extends Controller
         $data = User::where('id', session('DangNhap'))->first();
         $thuonghieus = ThuongHieu::all();
         $loaisanphams = LoaiSanPham::all();
+        $khuyenmais = KhuyenMai::all();
 
-        if ($gia1 == '0') {
-            $sanphams = DB::table('san_pham')->where('don_gia', '<', $gia2)->paginate(9);
-        } else {
-            $sanphams = DB::table('san_pham')->where('don_gia', '>', $gia1)->where('don_gia', '<', $gia2)->paginate(9);
+        // Get all products
+        $allProducts = DB::table('san_pham')->get();
+        $filteredProducts = [];
+        
+        // Create a lookup for khuyenmai percentages
+        $discountLookup = [];
+        foreach ($khuyenmais as $khuyenmai) {
+            $discountLookup[$khuyenmai->ten_khuyen_mai] = (float)$khuyenmai->gia_tri_khuyen_mai;
         }
+        
+        foreach ($allProducts as $product) {
+            // Standard price (no discount) - clean the string and convert to number
+            $originalPriceStr = preg_replace('/[^0-9]/', '', $product->don_gia);
+            $originalPrice = (float)$originalPriceStr;
+            
+            // Factor in any discounts if applicable
+            $discountPercent = isset($discountLookup[$product->ten_khuyen_mai]) ? $discountLookup[$product->ten_khuyen_mai] : 0;
+            $discountAmount = $originalPrice * ($discountPercent / 100);
+            $finalPrice = $originalPrice - $discountAmount;
+            
+            // Get the price range values
+            $minPrice = (float)$gia1;
+            $maxPrice = (float)$gia2;
+            
+            // Precisely check price range
+            $inRange = false;
+            if ($gia1 == '0' && $finalPrice > 0 && $finalPrice <= $maxPrice) {
+                $inRange = true;
+            } elseif ($finalPrice >= $minPrice && $finalPrice <= $maxPrice) {
+                $inRange = true;
+            }
+            
+            if ($inRange) {
+                $filteredProducts[] = $product;
+            }
+        }
+        
+        // Convert collection to paginator
+        $perPage = 9;
+        $currentPage = request()->get('page', 1);
+        $pagedData = array_slice($filteredProducts, ($currentPage - 1) * $perPage, $perPage);
+        $sanphams = new \Illuminate\Pagination\LengthAwarePaginator(
+            $pagedData, 
+            count($filteredProducts), 
+            $perPage, 
+            $currentPage,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
 
         $users = User::all();
         $phanquyens = PhanQuyen::all();
-        $khuyenmais = KhuyenMai::all();
 
         return view('index')->with('route', 'cua-hang')
             ->with('data', $data)
@@ -245,6 +288,7 @@ class MainController extends Controller
             ->with('khuyenmais', $khuyenmais)
             ->with('timthuonghieu', '')
             ->with('timloaisanpham', '')
+            ->with('timgia', "$gia1-$gia2")
         ;
     }
 
@@ -266,6 +310,26 @@ class MainController extends Controller
     // HandleRegister
     public function storeReg(Request $request)
     {
+        $request->validate([
+            'ten_nguoi_dung' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'sdt' => 'required|string|max:12|unique:users',
+            'ten_dang_nhap' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ], [
+            'ten_nguoi_dung.required' => 'Vui lòng nhập họ và tên',
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Email không đúng định dạng',
+            'email.unique' => 'Email đã tồn tại',
+            'sdt.required' => 'Vui lòng nhập số điện thoại',
+            'sdt.unique' => 'Số điện thoại đã tồn tại',
+            'ten_dang_nhap.required' => 'Vui lòng nhập tên đăng nhập',
+            'ten_dang_nhap.unique' => 'Tên đăng nhập đã tồn tại',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+            'password.confirmed' => 'Mật khẩu xác nhận không khớp',
+        ]);
+
         User::create([
             'ten_nguoi_dung' => $request->input('ten_nguoi_dung'),
             'email' => $request->input('email'),
