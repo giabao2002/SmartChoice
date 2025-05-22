@@ -182,8 +182,29 @@ class SanPhamController extends Controller
 
     public function destroy($id)
     {
+        // Kiểm tra sản phẩm có trong đơn hàng nào không
+        $donhangs = \App\Models\DonHang::all();
+        
+        foreach ($donhangs as $donhang) {
+            // Đơn hàng lưu trữ dưới dạng serialize nên cần unserialize
+            $hoadon_items = unserialize($donhang['hoa_don']);
+            
+            // Nếu hoa_don không phải array hoặc trống, bỏ qua
+            if (!is_array($hoadon_items) || empty($hoadon_items)) {
+                continue;
+            }
+            
+            // Kiểm tra xem sản phẩm có trong đơn hàng này không
+            if (array_key_exists($id, $hoadon_items)) {
+                // Sản phẩm tồn tại trong đơn hàng, không cho phép xóa
+                return redirect('/admin/sanpham')
+                    ->with('error', 'Không thể xóa sản phẩm này vì nó đã có trong đơn hàng.');
+            }
+        }
+        
+        // Nếu không có đơn hàng nào chứa sản phẩm này, tiến hành xóa
         $data = SanPham::find($id);
         $data->delete();
-        return Redirect('/admin/sanpham');
+        return redirect('/admin/sanpham')->with('success', 'Đã xóa sản phẩm thành công.');
     }
 }

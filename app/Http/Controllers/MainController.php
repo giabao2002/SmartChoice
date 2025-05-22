@@ -355,7 +355,7 @@ class MainController extends Controller
 
         if (!$userinfoEmail) {
             if (!$userinfoUser) {
-                return back()->with('thatbai', '* Tên đăng nhập hoặc Email không tồn tại!');
+                return back()->with('thatbai', 'Tên đăng nhập hoặc Email không tồn tại!');
             } else {
                 if (Hash::check($request->password, $userinfoUser->password)) {
                     $request->session()->put('DangNhap', $userinfoUser->id);
@@ -417,7 +417,7 @@ class MainController extends Controller
                     }
                 } else {
                     session()->put('check', '0');
-                    return back()->with('thatbai', '* Mật khẩu nhập không đúng, vui lòng nhập lại');
+                    return back()->with('thatbai', 'Mật khẩu nhập không đúng, vui lòng nhập lại');
                 }
             }
         } else {
@@ -481,7 +481,7 @@ class MainController extends Controller
                 }
             } else {
                 session()->put('check', '0');
-                return back()->with('thatbai', '* Mật khẩu nhập không đúng, vui lòng nhập lại');
+                return back()->with('thatbai', 'Mật khẩu nhập không đúng, vui lòng nhập lại');
             }
         }
     }
@@ -548,8 +548,19 @@ class MainController extends Controller
 
     public function destroy($id)
     {
+        // Kiểm tra xem người dùng có đơn hàng nào không
+        $donhangs = DonHang::where('id_user', $id)->get();
+        
+        if ($donhangs->count() > 0) {
+            // Người dùng đã có đơn hàng, không cho phép xóa
+            return redirect('/admin/taikhoan/taikhoan')
+                ->with('error', 'Không thể xóa tài khoản này vì người dùng đã có đơn hàng.');
+        }
+        
+        // Nếu không có đơn hàng nào, tiến hành xóa
         $data = User::find($id);
         $data->delete();
-        return Redirect('/admin/taikhoan');
+        return redirect('/admin/taikhoan/taikhoan')
+            ->with('success', 'Đã xóa tài khoản thành công.');
     }
 }

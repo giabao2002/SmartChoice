@@ -38,8 +38,21 @@ class PhanQuyenController extends Controller
 
     public function destroy($id)
     {
-        $data = PhanQuyen::find($id);
-        $data->delete();
-        return Redirect('/admin/phanquyen');
+        // Lấy thông tin phân quyền
+        $phanquyen = PhanQuyen::find($id);
+        
+        // Kiểm tra xem có tài khoản nào đang sử dụng phân quyền này không
+        $users = \App\Models\User::where('id_phan_quyen', $id)->get();
+        
+        if ($users->count() > 0) {
+            // Phân quyền đang được sử dụng bởi tài khoản, không cho phép xóa
+            return redirect('/admin/phanquyen')
+                ->with('error', 'Không thể xóa phân quyền này vì đang được áp dụng cho tài khoản.');
+        }
+        
+        // Nếu không có tài khoản nào sử dụng phân quyền này, tiến hành xóa
+        $phanquyen->delete();
+        return redirect('/admin/phanquyen')
+            ->with('success', 'Đã xóa phân quyền thành công.');
     }
 }

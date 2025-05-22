@@ -18,6 +18,12 @@
                 </ol>
             </nav>
 
+            @if(session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+            @endif
+
             <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
                 @isset($donhangs)
                     <div class="p-4">
@@ -167,6 +173,9 @@
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Thành tiền</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Tùy chọn</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -175,15 +184,37 @@
                                     @endphp
 
                                     @foreach ($donhangs as $donhang)
+                                        @php
+                                            // Tìm sản phẩm dựa vào tên
+                                            $sanPham = \App\Models\SanPham::where('ten_san_pham', $donhang['ten_san_pham'])->first();
+                                            $idSanPham = $sanPham ? $sanPham->id_san_pham : null;
+                                        @endphp
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $donhang['ten_san_pham'] }}</td>
+                                                @if($idSanPham)
+                                                <a href="/cua-hang/san-pham={{ $idSanPham }}" class="text-blue-600 hover:text-blue-800 hover:underline">
+                                                    {{ $donhang['ten_san_pham'] }}
+                                                </a>
+                                                @else
+                                                <span>{{ $donhang['ten_san_pham'] }}</span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ number_format($donhang['don_gia']) }} VNĐ</td>
+                                                {{ number_format($donhang['don_gia']) }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 {{ $donhang['so_luong'] }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">
-                                                {{ number_format($donhang['don_gia'] * $donhang['so_luong']) }} VNĐ</td>
+                                                {{ number_format($donhang['don_gia'] * $donhang['so_luong']) }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                @if($idSanPham)
+                                                <a href="/cua-hang/san-pham={{ $idSanPham }}#ex2-tabs-3" 
+                                                   class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded transition-colors duration-200">
+                                                    <i class="fas fa-star mr-1"></i> Đánh giá
+                                                </a>
+                                                @else
+                                                <span class="text-gray-400 italic">Không thể đánh giá</span>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

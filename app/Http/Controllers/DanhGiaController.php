@@ -10,6 +10,17 @@ class DanhGiaController extends Controller
 {
     public function store($id, Request $request)
     {
+        // Validation dữ liệu đầu vào
+        $request->validate([
+            'ten_danh_gia' => 'required|string|max:255',
+            'danh_gia_binh_luan' => 'required|string',
+            'danh_gia' => 'required|numeric|min:0|max:5',
+        ], [
+            'ten_danh_gia.required' => 'Vui lòng nhập tên người đánh giá',
+            'danh_gia_binh_luan.required' => 'Vui lòng nhập nội dung đánh giá',
+            'danh_gia.required' => 'Vui lòng chọn số sao đánh giá',
+        ]);
+
         $check = 0;
         $dgs = DanhGia::all();
         foreach ($dgs as $dg) {
@@ -27,6 +38,8 @@ class DanhGiaController extends Controller
             $danhgia['ten_danh_gia'] = $request->input('ten_danh_gia');
             $danhgia['danh_gia_binh_luan'] = $request->input('danh_gia_binh_luan');
             $danhgia->save();
+            
+            return redirect('/cua-hang/san-pham=' . $id)->with('success_rating', 'Cập nhật đánh giá thành công!');
         } else {
             DanhGia::create([
                 'danh_gia' => $request->input('danh_gia'),
@@ -35,7 +48,8 @@ class DanhGiaController extends Controller
                 'danh_gia_binh_luan' => $request->input('danh_gia_binh_luan'),
                 'id_san_pham' => $id,
             ]);
+            
+            return redirect('/cua-hang/san-pham=' . $id)->with('success_rating', 'Đánh giá sản phẩm thành công!');
         }
-        return Redirect('/cua-hang/san-pham=' . $id);
     }
 }

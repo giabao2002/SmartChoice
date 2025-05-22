@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 20, 2025 at 06:43 PM
--- Server version: 8.0.30
--- PHP Version: 8.2.26
+-- Generation Time: May 22, 2025 at 10:52 AM
+-- Server version: 8.4.3
+-- PHP Version: 8.3.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,21 +30,13 @@ SET time_zone = "+00:00";
 CREATE TABLE `danh_gia` (
   `id_danh_gia` int UNSIGNED NOT NULL,
   `id_user` int UNSIGNED NOT NULL,
-  `ten_danh_gia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `danh_gia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `danh_gia_binh_luan` longtext COLLATE utf8mb4_unicode_ci,
+  `ten_danh_gia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `danh_gia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `danh_gia_binh_luan` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `id_san_pham` int UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `danh_gia`
---
-
-INSERT INTO `danh_gia` (`id_danh_gia`, `id_user`, `ten_danh_gia`, `danh_gia`, `danh_gia_binh_luan`, `id_san_pham`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Nguyễn Văn A', '4.5', 'Sản phẩm tốt', 1, '2025-03-19 21:37:59', '2025-03-19 21:37:59'),
-(2, 2, 'Nguyễn Văn A', '5', 'Sản phẩm tốt', 16, '2025-03-20 05:56:38', '2025-03-20 05:56:38');
 
 -- --------------------------------------------------------
 
@@ -55,27 +47,18 @@ INSERT INTO `danh_gia` (`id_danh_gia`, `id_user`, `ten_danh_gia`, `danh_gia`, `d
 CREATE TABLE `don_hang` (
   `id_don_hang` int UNSIGNED NOT NULL,
   `id_user` int UNSIGNED NOT NULL,
-  `ten_nguoi_nhan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sdt` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dia_chi_nhan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ghi_chu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tong_tien` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hinh_thuc_thanh_toan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trang_thai` enum('Đang xử lý','Đã xác nhận','Đã hoàn thành','Đã hủy') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Đang xử lý',
-  `hoa_don` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_nguoi_nhan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sdt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dia_chi_nhan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ghi_chu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tong_tien` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hinh_thuc_thanh_toan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trang_thai` enum('Đang xử lý','Đã xác nhận','Đã hoàn thành','Đã hủy') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Đang xử lý',
+  `hoa_don` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `props` json DEFAULT (json_array()),
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `don_hang`
---
-
-INSERT INTO `don_hang` (`id_don_hang`, `id_user`, `ten_nguoi_nhan`, `sdt`, `dia_chi_nhan`, `ghi_chu`, `tong_tien`, `hinh_thuc_thanh_toan`, `trang_thai`, `hoa_don`, `props`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Nguyễn Văn A', '0123456788', 'Hà Nội', 'Giao hàng cẩn thận', '1,020,000 VNĐ', 'Thanh toán qua MoMo', 'Đã hoàn thành', 'a:1:{i:1;a:5:{s:10:\"hinh_anh_1\";s:12:\"sanpham1.png\";s:12:\"ten_san_pham\";s:13:\"Adidas NMD R2\";s:7:\"don_gia\";s:7:\"1200000\";s:8:\"so_luong\";s:1:\"1\";s:10:\"khuyen_mai\";s:2:\"15\";}}', '{\"amount\": 1020000, \"orderId\": \"DH_1742445370_2\", \"requestId\": \"b0c59e61f03387dce916544d3b1c1ea9\"}', '2025-03-19 21:36:52', '2025-03-19 21:37:25'),
-(2, 2, 'Nguyễn Văn A', '0123456788', 'Thanh Xuân', NULL, '1,530,000 VNĐ', 'Sau khi nhận hàng', 'Đã hoàn thành', 'a:1:{i:4;a:5:{s:10:\"hinh_anh_1\";s:27:\"09092022024829_bdj-1000.png\";s:12:\"ten_san_pham\";s:32:\"BDJ 1000 Headphones DJ Behringer\";s:7:\"don_gia\";s:7:\"1800000\";s:8:\"so_luong\";s:1:\"1\";s:10:\"khuyen_mai\";s:2:\"15\";}}', '[]', '2025-03-20 04:51:57', '2025-03-20 04:54:01'),
-(3, 2, 'Nguyễn Văn A', '0123456788', 'Hà Nội', NULL, '380,000 VNĐ', 'Thanh toán qua MoMo', 'Đã hoàn thành', 'a:1:{i:16;a:5:{s:10:\"hinh_anh_1\";s:99:\"34400_dareu_eh469_pink_1d57e30add8f42eca3eaa006d32481e2_5fea9259b65343acadecc1b76079c8b4_grande.png\";s:12:\"ten_san_pham\";s:24:\"DareU EH469 7.1 RGB Pink\";s:7:\"don_gia\";s:6:\"380000\";s:8:\"so_luong\";s:1:\"1\";s:10:\"khuyen_mai\";s:1:\"0\";}}', '{\"amount\": 380000, \"orderId\": \"DH_1742475199_2\", \"requestId\": \"bbd0f09ce5c10998ae4fbc7d4a068f86\"}', '2025-03-20 05:53:45', '2025-03-20 05:55:19');
 
 -- --------------------------------------------------------
 
@@ -85,8 +68,8 @@ INSERT INTO `don_hang` (`id_don_hang`, `id_user`, `ten_nguoi_nhan`, `sdt`, `dia_
 
 CREATE TABLE `khuyen_mai` (
   `id_khuyen_mai` int UNSIGNED NOT NULL,
-  `ten_khuyen_mai` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gia_tri_khuyen_mai` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `ten_khuyen_mai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gia_tri_khuyen_mai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -108,7 +91,7 @@ INSERT INTO `khuyen_mai` (`id_khuyen_mai`, `ten_khuyen_mai`, `gia_tri_khuyen_mai
 
 CREATE TABLE `loai_san_pham` (
   `id_loai_san_pham` int UNSIGNED NOT NULL,
-  `ten_loai_san_pham` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_loai_san_pham` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -126,59 +109,12 @@ INSERT INTO `loai_san_pham` (`id_loai_san_pham`, `ten_loai_san_pham`, `created_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(2, '2024_11_05_083501_create_phan_quyen_table', 1),
-(3, '2024_11_05_083502_create_thuong_hieu_table', 1),
-(4, '2024_11_05_083503_create_loai_san_pham_table', 1),
-(5, '2024_11_05_083504_create_khuyen_mai_table', 1),
-(6, '2024_11_05_083505_create_san_pham_table', 1),
-(7, '2024_11_05_083506_create_users_table', 1),
-(8, '2024_11_05_083507_create_don_hang_table', 1),
-(9, '2024_11_05_083508_create_danh_gia_table', 1),
-(10, '2024_11_05_083509_create_sessions_table', 1),
-(11, '2024_11_06_183222_add_prop_data_to_don_hang_table', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `phan_quyen`
 --
 
 CREATE TABLE `phan_quyen` (
   `id_phan_quyen` int UNSIGNED NOT NULL,
-  `ten_phan_quyen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `ten_phan_quyen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -197,18 +133,18 @@ INSERT INTO `phan_quyen` (`id_phan_quyen`, `ten_phan_quyen`) VALUES
 
 CREATE TABLE `san_pham` (
   `id_san_pham` int UNSIGNED NOT NULL,
-  `ten_san_pham` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ten_loai_san_pham` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ten_thuong_hieu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mo_ta` longtext COLLATE utf8mb4_unicode_ci,
-  `don_gia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `so_luong` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hinh_anh_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hinh_anh_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hinh_anh_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hinh_anh_4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ten_khuyen_mai` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `so_luong_mua` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ten_san_pham` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_loai_san_pham` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_thuong_hieu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mo_ta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `don_gia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `so_luong` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hinh_anh_1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hinh_anh_2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hinh_anh_3` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hinh_anh_4` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ten_khuyen_mai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `so_luong_mua` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -242,20 +178,13 @@ INSERT INTO `san_pham` (`id_san_pham`, `ten_san_pham`, `ten_loai_san_pham`, `ten
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('lxtfV9GCHAaFAqSoGmPUAMyIljb5y1FD8HzKYs3g', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiV2g3eE55UFB2MW5OdUpsRkN6S0FrM3I1NWpyMG40QUdNNzlsTUZNQSI7czo4OiJnaW9faGFuZyI7YTowOnt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9zYW5waGFtIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1OiJjaGVjayI7czoxOiIxIjtzOjg6IkRhbmdOaGFwIjtpOjE7fQ==', 1742496094);
 
 -- --------------------------------------------------------
 
@@ -265,7 +194,7 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 
 CREATE TABLE `thuong_hieu` (
   `id_thuong_hieu` int UNSIGNED NOT NULL,
-  `ten_thuong_hieu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `ten_thuong_hieu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -290,11 +219,11 @@ INSERT INTO `thuong_hieu` (`id_thuong_hieu`, `ten_thuong_hieu`) VALUES
 
 CREATE TABLE `users` (
   `id` int UNSIGNED NOT NULL,
-  `ten_nguoi_dung` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sdt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ten_dang_nhap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_nguoi_dung` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sdt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ten_dang_nhap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_phan_quyen` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -339,20 +268,6 @@ ALTER TABLE `loai_san_pham`
   ADD PRIMARY KEY (`id_loai_san_pham`);
 
 --
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
-
---
 -- Indexes for table `phan_quyen`
 --
 ALTER TABLE `phan_quyen`
@@ -395,43 +310,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `danh_gia`
 --
 ALTER TABLE `danh_gia`
-  MODIFY `id_danh_gia` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_danh_gia` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `don_hang`
 --
 ALTER TABLE `don_hang`
-  MODIFY `id_don_hang` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_don_hang` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `khuyen_mai`
 --
 ALTER TABLE `khuyen_mai`
-  MODIFY `id_khuyen_mai` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_khuyen_mai` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `loai_san_pham`
 --
 ALTER TABLE `loai_san_pham`
-  MODIFY `id_loai_san_pham` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_loai_san_pham` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `phan_quyen`
 --
 ALTER TABLE `phan_quyen`
-  MODIFY `id_phan_quyen` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_phan_quyen` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `san_pham`
@@ -443,13 +346,13 @@ ALTER TABLE `san_pham`
 -- AUTO_INCREMENT for table `thuong_hieu`
 --
 ALTER TABLE `thuong_hieu`
-  MODIFY `id_thuong_hieu` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_thuong_hieu` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

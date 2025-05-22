@@ -155,6 +155,7 @@ class DonHangController extends Controller
         if (!$danh_gias) {
             $danh_gias = array();
         }
+        
         $oks = unserialize($request->input('thanh_toans'));
         foreach ($oks as $id => $ok) {
             $danh_gias[$id] = $ok;
@@ -171,8 +172,11 @@ class DonHangController extends Controller
                 }
             }
         }
+        
         session()->put('gio_hang', $giohangs);
-        return Redirect('/');
+        
+        // Chuyển hướng đến trang lịch sử đơn hàng kèm thông báo thành công
+        return redirect('/lich-su')->with('success', 'Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại Smart Choice.');
     }
 
     public function show($id)

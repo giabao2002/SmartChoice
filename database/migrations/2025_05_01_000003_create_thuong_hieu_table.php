@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPropDataToDonHangTable extends Migration
+class CreateThuongHieuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddPropDataToDonHangTable extends Migration
      */
     public function up()
     {
-        Schema::table('don_hang', function (Blueprint $table) {
-            $table->json('props')->default(DB::raw('(JSON_ARRAY())'))->nullable()->after('hoa_don');
+        Schema::create('thuong_hieu', function (Blueprint $table) {
+            $table->increments('id_thuong_hieu');
+            $table->string('ten_thuong_hieu');
         });
     }
 
@@ -25,8 +26,6 @@ class AddPropDataToDonHangTable extends Migration
      */
     public function down()
     {
-        Schema::table('don_hang', function (Blueprint $table) {
-            $table->dropColumn('props');
-        });
+        Schema::dropIfExists('thuong_hieu');
     }
-}
+} 

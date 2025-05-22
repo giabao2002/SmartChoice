@@ -36,14 +36,57 @@ class ThayDoiTaiKhoanController extends Controller
 
     public function update(Request $request)
     {
+        // Validate thông tin
+        $request->validate([
+            'ten_nguoi_dung' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'sdt' => 'required|string|max:12',
+            'ten_dang_nhap' => 'required|string|max:255',
+        ], [
+            'ten_nguoi_dung.required' => 'Vui lòng nhập họ và tên',
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Email không đúng định dạng',
+            'sdt.required' => 'Vui lòng nhập số điện thoại',
+            'ten_dang_nhap.required' => 'Vui lòng nhập tên đăng nhập',
+        ]);
+
         $data = User::find($request->id);
+        
+        // Kiểm tra email đã tồn tại cho người dùng khác
+        $emailExists = User::where('email', $request->email)
+                          ->where('id', '!=', $request->id)
+                          ->exists();
+        if ($emailExists) {
+            return back()->withErrors(['email' => 'Email đã được sử dụng bởi tài khoản khác']);
+        }
+        
+        // Kiểm tra tên đăng nhập đã tồn tại cho người dùng khác
+        $usernameExists = User::where('ten_dang_nhap', $request->ten_dang_nhap)
+                             ->where('id', '!=', $request->id)
+                             ->exists();
+        if ($usernameExists) {
+            return back()->withErrors(['ten_dang_nhap' => 'Tên đăng nhập đã được sử dụng bởi tài khoản khác']);
+        }
+        
+        // Kiểm tra số điện thoại đã tồn tại cho người dùng khác
+        $phoneExists = User::where('sdt', $request->sdt)
+                          ->where('id', '!=', $request->id)
+                          ->exists();
+        if ($phoneExists) {
+            return back()->withErrors(['sdt' => 'Số điện thoại đã được sử dụng bởi tài khoản khác']);
+        }
+
         $data['ten_nguoi_dung'] = $request->ten_nguoi_dung;
         $data['email'] = $request->email;
         $data['sdt'] = $request->sdt;
         $data['ten_dang_nhap'] = $request->ten_dang_nhap;
-        $data['password'] = Hash::make($request->password);
+        
+        // Chỉ cập nhật mật khẩu nếu người dùng nhập mật khẩu mới
+        if ($request->password) {
+            $data['password'] = Hash::make($request->password);
+        }
 
         $data->save();
-        return Redirect('/');
+        return redirect('/tai-khoan')->with('success', 'Cập nhật thông tin thành công!');
     }
 }

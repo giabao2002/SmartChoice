@@ -40,4 +40,4 @@ class CreateSanPhamTable extends Migration
     {
         Schema::dropIfExists('san_pham');
     }
-}
+} 

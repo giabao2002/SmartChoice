@@ -29,4 +29,4 @@ class CreateKhuyenMaiTable extends Migration
     {
         Schema::dropIfExists('khuyen_mai');
     }
-}
+} 

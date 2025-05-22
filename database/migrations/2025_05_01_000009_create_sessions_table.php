@@ -15,14 +15,14 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->unsignedInteger('user_id')->nullable()->index(); // Thay đổi thành unsignedInteger
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->text('payload');
-            $table->integer('last_activity')->index();
+            $table->integer('last_activity');
 
-            // Thêm foreign key
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->index(['user_id', 'last_activity']);
         });
     }
 
@@ -35,4 +35,4 @@ class CreateSessionsTable extends Migration
     {
         Schema::dropIfExists('sessions');
     }
-}
+} 

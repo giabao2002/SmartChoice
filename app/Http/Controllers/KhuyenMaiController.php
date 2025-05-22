@@ -39,8 +39,21 @@ class KhuyenMaiController extends Controller
 
     public function destroy($id)
     {
-        $data = KhuyenMai::find($id);
-        $data->delete();
-        return Redirect('/admin/khuyenmai');
+        // Lấy thông tin khuyến mãi
+        $khuyenmai = KhuyenMai::find($id);
+        
+        // Kiểm tra xem có sản phẩm nào đang sử dụng khuyến mãi này không
+        $sanphams = \App\Models\SanPham::where('ten_khuyen_mai', $khuyenmai->ten_khuyen_mai)->get();
+        
+        if ($sanphams->count() > 0) {
+            // Khuyến mãi đang được sử dụng cho sản phẩm, không cho phép xóa
+            return redirect('/admin/khuyenmai')
+                ->with('error', 'Không thể xóa khuyến mãi này vì đang được sử dụng bởi sản phẩm.');
+        }
+        
+        // Nếu không có sản phẩm nào sử dụng khuyến mãi này, tiến hành xóa
+        $khuyenmai->delete();
+        return redirect('/admin/khuyenmai')
+            ->with('success', 'Đã xóa khuyến mãi thành công.');
     }
 }

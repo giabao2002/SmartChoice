@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('ten_dang_nhap')->unique();
             $table->string('password');
             $table->unsignedInteger('id_phan_quyen');
+
             $table->foreign('id_phan_quyen')->references('id_phan_quyen')->on('phan_quyen')->onDelete('cascade');
         });
     }
@@ -34,4 +35,4 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
-}
+} 

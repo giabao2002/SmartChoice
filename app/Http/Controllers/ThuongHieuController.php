@@ -38,8 +38,21 @@ class ThuongHieuController extends Controller
 
     public function destroy($id)
     {
-        $data = ThuongHieu::find($id);
-        $data->delete();
-        return Redirect('/admin/thuonghieu');
+        // Lấy thông tin thương hiệu
+        $thuonghieu = ThuongHieu::find($id);
+        
+        // Kiểm tra xem có sản phẩm nào thuộc thương hiệu này không
+        $sanphams = \App\Models\SanPham::where('ten_thuong_hieu', $thuonghieu->ten_thuong_hieu)->get();
+        
+        if ($sanphams->count() > 0) {
+            // Thương hiệu đang chứa sản phẩm, không cho phép xóa
+            return redirect('/admin/thuonghieu/thuonghieu')
+                ->with('error', 'Không thể xóa thương hiệu này vì nó đang chứa sản phẩm.');
+        }
+        
+        // Nếu không có sản phẩm nào, tiến hành xóa
+        $thuonghieu->delete();
+        return redirect('/admin/thuonghieu/thuonghieu')
+            ->with('success', 'Đã xóa thương hiệu thành công.');
     }
 }

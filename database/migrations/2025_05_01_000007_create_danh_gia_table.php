@@ -15,14 +15,13 @@ class CreateDanhGiaTable extends Migration
     {
         Schema::create('danh_gia', function (Blueprint $table) {
             $table->increments('id_danh_gia');
-            $table->unsignedInteger('id_user'); // Thay đổi thành unsignedInteger
+            $table->unsignedInteger('id_user');
             $table->string('ten_danh_gia');
             $table->string('danh_gia');
             $table->longText('danh_gia_binh_luan')->nullable();
-            $table->unsignedInteger('id_san_pham'); // Thay đổi thành unsignedInteger
+            $table->unsignedInteger('id_san_pham');
             $table->timestamps();
 
-            // Thêm foreign key
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_san_pham')->references('id_san_pham')->on('san_pham')->onDelete('cascade');
         });
@@ -37,4 +36,4 @@ class CreateDanhGiaTable extends Migration
     {
         Schema::dropIfExists('danh_gia');
     }
-}
+} 
